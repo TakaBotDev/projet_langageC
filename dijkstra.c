@@ -35,7 +35,7 @@ static float cout(grille_t grille, coord_t courant, coord_t suivant) {
  * @param source noeud de départ du chemin
  * @param noeud noeud vers lequel on veut construire le chemin depuis le départ
  */
-// TODO: construire_chemin_vers
+// TODO:test  construire_chemin_vers
 
 float dijkstra(
         grille_t grille, 
