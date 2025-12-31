@@ -115,5 +115,5 @@ size_t get_voisins(grille_t grille, coord_t position, float seuil, coord_t** voi
         *voisins = NULL;
     }
     
-    return nb_voisins;
+    return ind_voisin_valide;
 }   
