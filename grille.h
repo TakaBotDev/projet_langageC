@@ -12,10 +12,12 @@
  *  - un tableau de flottants contenant les données de hauteur
  */
 struct grille_t {
-    // TODO
+    int largeur;
+    int profondeur;
+    float* hauteurs;   // hauteurs contient l’adresse mémoire du premier élément d’un tableau de floats
 };
 
-// TODO : typedef pour éviter d'écrire "struct grille_t" partout
+typedef struct grille_t grille_t;
 
 /**
  * creer_grille : crée une grille de largeur et de profondeur données.
