@@ -17,7 +17,6 @@ static size_t coord_lin(grille_t grille, coord_t position) {
     return (size_t)get_y(position) * (size_t)grille.largeur + (size_t)get_x(position);
 }
 
-
 grille_t creer_grille(int largeur, int profondeur) {
     assert(largeur > 0);
     assert(profondeur > 0);
