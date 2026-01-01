@@ -18,6 +18,16 @@
  * @return coût pour passer de courant à suivant
  */
 static float cout(grille_t grille, coord_t courant, coord_t suivant) {
+        float dist = distance_euclidienne(courant, suivant);
+        float h_cour = get_hauteur(grille, courant);
+        float h_suiv = get_hauteur(grille, suivant);
+        float denivele = h_suiv - h_cour;
+        
+        if (denivele > 0.0f) {
+                return dist + denivele;
+        } else {
+                return dist;
+        }
 }
 
 /**
@@ -35,7 +45,7 @@ static float cout(grille_t grille, coord_t courant, coord_t suivant) {
  * @param source noeud de départ du chemin
  * @param noeud noeud vers lequel on veut construire le chemin depuis le départ
  */
-// TODO:test  construire_chemin_vers
+// TODO: construire_chemin_vers
 
 float dijkstra(
         grille_t grille, 
