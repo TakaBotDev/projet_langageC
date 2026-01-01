@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-LCA creer_liste () {
+liste_noeud_t* creer_liste (void) {
     return Null; /* A revoir car ça ne respecte pas les post-condtions. */
 }
 
 
-void detruire_liste (LCA liste_ptr) {
+void detruire_liste (liste_noeud_t** liste_ptr) {
     LCA Courant = liste_ptr;
     while (Courant != Null) {
         Free(Courant);
@@ -17,43 +17,43 @@ void detruire_liste (LCA liste_ptr) {
 }
 
 
-bool est_vide_liste () {
+bool est_vide_liste(const liste_noeud_t* liste) {
     LCA Courant = liste_ptr;
     
 }
 
 
-bool contient_noeud_liste () {
+bool contient_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
 
 }
 
 
-bool contient_arrete_liste () {
+bool contient_noeud_liste(const liste_noeud_t* liste, coord_t source, coord_t destination) {
 
 }
 
 
-int cout_noeud_liste () {
+float cout_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
 
 }
 
 
-LCA precedent_noeud_liste () {
+coord_t precedent_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
 
 }
 
 
-LCA min_noeud_liste () {
+coord_t min_noeud_liste(const liste_noeud_t* liste) {
 
 }
 
 
-void inserer_noeud_liste () {
+void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, float cout, coord_t precedent) {
 
 }
 
 
-void supprimer_noeud_liste () {
+void supprimer_noeud_liste(liste_noeud_t* liste, coord_t noeud){
 
 }
 
