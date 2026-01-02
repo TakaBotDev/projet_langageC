@@ -107,6 +107,24 @@ float dijkstra(
 
                 free(voisins);
         }
-    }
+        
+        float cout_final = cout_noeud_liste(visites, destination);
+        if (chemin != NULL) {
+                *chemin = creer_liste();
+                
+                inserer_noeud_liste(*chemin, source, source, 0.0f);
+                
+                construire_chemin_vers(*chemin, visites, source, destination);
+                
+                float cout_dest = cout_noeud_liste(visites, destination);
+                inserer_noeud_liste(*chemin, destination, precedent_noeud_liste(visites, destination), cout_dest);
+        }
+        
+        detruire_liste(&a_visiter);
+        detruire_liste(&visites);
+        
+        return cout_final;
+        
+}
 
 
