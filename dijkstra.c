@@ -53,7 +53,41 @@ float dijkstra(
         float seuil,
         liste_noeud_t** chemin
     ) {
-    // TODO
-}
+        liste_noeud_t* a_visiter = creer_liste();
+        liste_noeud_t* visites = creer_liste();
+
+        inserer_noeud_liste(a_visiter, source, source, 0.0f);
+
+        while (! est_vide_liste(a_visiter)) {
+                coord_t noeud_courant = min_noeud_liste(a_visiter);
+                float cout_courant = cout_noeud_liste(a_visiter, noeud_courant);
+                coord_t prec_courant = precedent_noeud_liste(a_visiter, noeud_courant);
+
+                inserer_noeud_liste(visites, noeud_courant, prec_courant, cout_courant);
+                supprimer_noeud_liste(a_visiter, noeud_courant);
+
+                coord_t* voisins = NULL;
+                size_t nb_voisins = get_voisins(grille, noeud_courant, seuil, &voisins);
+
+                for (size_t i = 0; i < nb_voisins; i++) {
+                        coord_t nv = voisins[i];
+
+                        if (contient_noeud_liste(visites, nv)) {
+                                continue;
+                        }
+
+                        float cout_vers_voisin = cout(grille, noeud_courant, nv);
+                        float nouveau_cout = cout_courant + cout_vers_voisin;
+
+                        float cout_actuel = cout_noeud_liste(a_visiter, nv);
+
+                        if (nouveau_cout < cout_actuel) {
+                                inserer_noeud_liste(a_visiter, nv, noeud_courant, nouveau_cout);
+                        }
+                }
+
+                free(voisins);
+        }
+    }
 
 
