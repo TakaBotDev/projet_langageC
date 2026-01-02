@@ -124,7 +124,7 @@ coord_t min_noeud_liste(const liste_noeud_t* liste);
  * @param precedent nouveau noeud précédent pour noeud
  * @param cout nouveau coût pour noeud
  */
-void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, float cout, coord_t precedent);
+void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, coord_t precedent, float cout);
 
 /**
  * supprimer_noeud_liste : supprime le noeud donné de la liste. Si le noeud n'est pas dans la liste,
