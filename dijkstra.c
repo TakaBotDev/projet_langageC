@@ -45,7 +45,25 @@ static float cout(grille_t grille, coord_t courant, coord_t suivant) {
  * @param source noeud de départ du chemin
  * @param noeud noeud vers lequel on veut construire le chemin depuis le départ
  */
-// TODO: construire_chemin_vers
+static void construire_chemin_vers(
+                                liste_noeud_t* chemin,
+                                liste_noeud_t* visites,
+                                coord_t source,
+                                coord_t noeud
+                        ){
+        if ( memes_coord(noeud, source) ) {
+                return;
+        } else {
+                coord_t prec = precedent_noeud_liste(visites, noeud);
+                
+                construire_chemin_vers(chemin, visites, source, prec);
+
+                float cout_prec = cout_noeud_liste(visites, prec);
+                inserer_noeud_liste(chemin, prec, precedent_noeud_liste(visites, prec), cout_prec);
+        }
+}
+
+
 
 float dijkstra(
         grille_t grille, 
@@ -53,6 +71,7 @@ float dijkstra(
         float seuil,
         liste_noeud_t** chemin
     ) {
+        
         liste_noeud_t* a_visiter = creer_liste();
         liste_noeud_t* visites = creer_liste();
 
