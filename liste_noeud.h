@@ -16,6 +16,8 @@ struct liste_noeud_t {
 
 typedef struct liste_noeud_t liste_noeud_t;
 
+typedef struct _cellule _cellule;
+
 /**
  * creer_liste : crée une liste de noeuds, initialement vide
  *
