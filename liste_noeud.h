@@ -69,7 +69,7 @@ bool contient_noeud_liste(const liste_noeud_t* liste, coord_t noeud);
  * @param destination noeud destination de l'arrête
  * @return vrai ssi l'arrête (source,destination) est dans liste
  */
-bool contient_noeud_liste(const liste_noeud_t* liste, coord_t source, coord_t destination);
+bool contient_arrete_liste(const liste_noeud_t* liste, coord_t source, coord_t destination);
 
 /**
  * cout_noeud_liste : récupère le coût associé au noeud donné dans la liste donnée.
