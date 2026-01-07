@@ -47,16 +47,7 @@ bool contient_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
 
 
 bool contient_arrete_liste(const liste_noeud_t* liste, coord_t source, coord_t destination) {
-    const _cellule* Courant = liste -> tete;
-    coord_t* prec_destination;
-    while (Courant != NULL) {
-        if (memes_coord(Courant -> noeud, destination)) {
-            set_x (prec_destination, get_x (Courant -> precedent));
-            set_y (prec_destination, get_y (Courant -> precedent));
-        }
-        Courant = Courant -> suivant;
-    }
-    return contient_noeud_liste (liste, source) && contient_noeud_liste (liste, destination) && memes_coord(*prec_destination, source);
+    return contient_noeud_liste (liste, source) && contient_noeud_liste (liste, destination) && memes_coord(precedent_noeud_liste(liste, destination), source);
 }
 
 
@@ -70,7 +61,7 @@ float cout_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
         Courant = Courant -> suivant;
     }
     if (Cellule == NULL) {
-        return 99999999999999999999999;
+        return INFINITY;
     }
     else {
         return Cellule -> cout;
