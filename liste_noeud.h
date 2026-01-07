@@ -84,6 +84,7 @@ bool contient_arrete_liste(const liste_noeud_t* liste, coord_t source, coord_t d
  */
 float cout_noeud_liste(const liste_noeud_t* liste, coord_t noeud);
 
+
 /**
  * precedent_noeud_liste : récupère le noeud précédent associé au noeud donné dans la liste donnée.
  * Si le noeud n'existe pas, retourne des coordonnées négatives.
