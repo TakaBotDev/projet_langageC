@@ -36,13 +36,18 @@ bool est_vide_liste(const liste_noeud_t* liste) {
 
 bool contient_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
     const _cellule* Courant = liste -> tete;
-    while (Courant != NULL) {
+    bool trouve = false;
+    
+    while (Courant != NULL && !trouve) {
         if (memes_coord(Courant -> noeud, noeud)) {
-            return true;
+            trouve = true;
+        } else {
+            NULL;
         }
         Courant = Courant -> suivant;
     }
-    return false;
+    
+    return trouve;
 }
 
 
@@ -52,35 +57,34 @@ bool contient_arrete_liste(const liste_noeud_t* liste, coord_t source, coord_t d
 
 
 float cout_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
-    const _cellule* Cellule = NULL;
     const _cellule* Courant = liste -> tete;
-    while (Courant != NULL) {
+    float cout_trouve = INFINITY;
+    bool trouve = false;
+    
+    while (Courant != NULL && !trouve) {
         if (memes_coord(Courant -> noeud, noeud)) { 
-            Cellule = Courant;
+            cout_trouve = Courant->cout;
+            trouve = true;
         }
         Courant = Courant -> suivant;
     }
-    if (Cellule == NULL) {
-        return INFINITY;
-    }
-    else {
-        return Cellule -> cout;
-    }
+    return cout_trouve;
 }
 
 
 coord_t precedent_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
-    const _cellule* Cellule = NULL;
     const _cellule* Courant = liste -> tete;
-    while (Courant != NULL) {
+    bool trouve = false;
+    coord_t precedent_trouve = creer_coord(-1, -1);
+    
+    while (Courant != NULL && !trouve) {
         if (memes_coord(Courant -> noeud, noeud)) {
-            Cellule = Courant;
+            precedent_trouve = Courant -> precedent;
+            trouve = true;
         }
         Courant = Courant -> suivant;
     }
-    if (Cellule != NULL) {
-        return Cellule -> precedent;
-    }
+    return precedent_trouve;
 }
 
 
@@ -98,9 +102,11 @@ coord_t min_noeud_liste(const liste_noeud_t* liste) {
 void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, coord_t precedent, float cout) {
     _cellule* Cellule = NULL;
     _cellule* Courant = liste -> tete;
-    while (Courant != NULL) {
+    while (Courant != NULL && Cellule == NULL) {
         if (memes_coord(Courant -> noeud, noeud)) {
             Cellule = Courant;
+        } else {
+            NULL;
         }
         Courant = Courant -> suivant;
     }
@@ -108,36 +114,46 @@ void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, coord_t precedent,
     if (Cellule != NULL) {
         Cellule -> cout = cout;
         Cellule -> precedent = precedent;
-        return;
+    } else {
+        _cellule* Nouveau = (_cellule*)malloc(sizeof(*Nouveau));
+        if (Nouveau != NULL) {
+        Nouveau -> noeud = noeud;
+        Nouveau -> cout = cout;
+        Nouveau -> precedent = precedent;
+        Nouveau -> suivant = liste -> tete;
+        liste -> tete = Nouveau;
+        } else {
+            NULL;
+        }
     }
-
-    _cellule* Nouveau = (_cellule*)malloc(sizeof(*Nouveau));
-    Nouveau -> noeud = noeud;
-    Nouveau -> cout = cout;
-    Nouveau -> precedent = precedent;
-    Nouveau -> suivant = liste -> tete;
-    liste -> tete = Nouveau;
 }
 
 
 void supprimer_noeud_liste(liste_noeud_t* liste, coord_t noeud){
     _cellule* Precedent = NULL;
     _cellule* Courant = liste -> tete;
+    bool trouve = false;
 
-    while (Courant != NULL) {
+    while (Courant != NULL && !trouve) {
         if (memes_coord(Courant -> noeud, noeud)) {
-            if (Precedent == NULL) {
-                liste -> tete = Courant -> suivant;
-            }
-            else {
-                Precedent -> suivant = Courant -> suivant;
-            }
-            free (Courant);
-            return;
+            trouve = true;
+        } else {
+            Precedent = Courant;
+            Courant = Courant ->suivant;
         }
-        Precedent = Courant;
-        Courant = Courant -> suivant;
-    }  
+    }
+
+    
+    if (trouve) {     
+        if (Precedent == NULL) {
+            liste -> tete = Courant -> suivant;
+        } else {
+            Precedent -> suivant = Courant -> suivant;
+        }
+        free (Courant);
+    } else {
+        NULL;
+    }
 }
 
 
