@@ -13,17 +13,18 @@ liste_noeud_t* creer_liste (void) {
 }
 
 
-void detruire_liste (liste_noeud_t* liste) {
-    if (liste == NULL) {
+void detruire_liste (liste_noeud_t** liste_ptr) {
+    if (*liste_ptr == NULL) {
         return;
     };
-    _cellule* Courant = liste -> tete;
+    _cellule* Courant = (*liste_ptr) -> tete;
     while (Courant != NULL) {
         _cellule* Suivant = Courant -> suivant;
         free (Courant);
         Courant = Suivant;
     }
-    free (liste);
+    free (*liste_ptr);
+    *liste_ptr = NULL;
 }
 
 
@@ -36,7 +37,7 @@ bool est_vide_liste(const liste_noeud_t* liste) {
 bool contient_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
     const _cellule* Courant = liste -> tete;
     while (Courant != NULL) {
-        if (Courant -> noeud == noeud) {
+        if (memes_coord(Courant -> noeud, noeud)) {
             return true;
         }
         Courant = Courant -> suivant;
@@ -46,7 +47,16 @@ bool contient_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
 
 
 bool contient_arrete_liste(const liste_noeud_t* liste, coord_t source, coord_t destination) {
-    return contient_noeud_liste (liste, source) && contient_noeud_liste (liste, destination) && prec(destination) == source;
+    const _cellule* Courant = liste -> tete;
+    coord_t* prec_destination;
+    while (Courant != NULL) {
+        if (memes_coord(Courant -> noeud, destination)) {
+            set_x (prec_destination, get_x (Courant -> precedent));
+            set_y (prec_destination, get_y (Courant -> precedent));
+        }
+        Courant = Courant -> suivant;
+    }
+    return contient_noeud_liste (liste, source) && contient_noeud_liste (liste, destination) && memes_coord(*prec_destination, source);
 }
 
 
@@ -54,7 +64,7 @@ float cout_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
     const _cellule* Cellule = NULL;
     const _cellule* Courant = liste -> tete;
     while (Courant != NULL) {
-        if (Courant -> noeud == noeud) {  /* Je comprends pas le problème */
+        if (memes_coord(Courant -> noeud, noeud)) {  /* Je comprends pas le problème */
             Cellule = Courant;
         }
         Courant = Courant -> suivant;
@@ -72,7 +82,7 @@ coord_t precedent_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
     const _cellule* Cellule = NULL;
     const _cellule* Courant = liste -> tete;
     while (Courant != NULL) {
-        if (Courant -> noeud == noeud) {
+        if (memes_coord(Courant -> noeud, noeud)) {
             Cellule = Courant;
         }
         Courant = Courant -> suivant;
@@ -94,11 +104,11 @@ coord_t min_noeud_liste(const liste_noeud_t* liste) {
 }
 
 
-void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, float cout, coord_t precedent) {
+void inserer_noeud_liste(liste_noeud_t* liste, coord_t noeud, coord_t precedent, float cout) {
     _cellule* Cellule = NULL;
     _cellule* Courant = liste -> tete;
     while (Courant != NULL) {
-        if (Courant -> noeud == noeud) {
+        if (memes_coord(Courant -> noeud, noeud)) {
             Cellule = Courant;
         }
         Courant = Courant -> suivant;
@@ -124,7 +134,7 @@ void supprimer_noeud_liste(liste_noeud_t* liste, coord_t noeud){
     _cellule* Courant = liste -> tete;
 
     while (Courant != NULL) {
-        if (Courant -> noeud == noeud) {
+        if (memes_coord(Courant -> noeud, noeud)) {
             if (Precedent == NULL) {
                 liste -> tete = Courant -> suivant;
             }
