@@ -55,7 +55,7 @@ float cout_noeud_liste(const liste_noeud_t* liste, coord_t noeud) {
     const _cellule* Cellule = NULL;
     const _cellule* Courant = liste -> tete;
     while (Courant != NULL) {
-        if (memes_coord(Courant -> noeud, noeud)) {  /* Je comprends pas le problème */
+        if (memes_coord(Courant -> noeud, noeud)) { 
             Cellule = Courant;
         }
         Courant = Courant -> suivant;
