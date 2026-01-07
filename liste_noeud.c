@@ -135,9 +135,9 @@ void supprimer_noeud_liste(liste_noeud_t* liste, coord_t noeud){
             free (Courant);
             return;
         }
-    }
-    Precedent = Courant;
-    Courant = Courant -> suivant;
+        Precedent = Courant;
+        Courant = Courant -> suivant;
+    }  
 }
 
 
