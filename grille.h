@@ -91,7 +91,7 @@ int get_profondeur(grille_t grille);
  * @param grille grille dont on veut le coin inférieur gauche
  * @return coordonnées du point demandé
  */
-coord_t inferieur_gauche(void);
+coord_t inferieur_gauche(grille_t grille);
 
 /**
  * superieur_droit : coordonnées du point supérieur droit de la grille
