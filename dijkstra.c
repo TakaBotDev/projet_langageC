@@ -1,5 +1,6 @@
 #include "dijkstra.h"
-#include "animation.h"
+#include "stdlib.h"
+/*#include "animation.h"*/
 
 /**
  * cout : calcule le coût pour rejoindre le noeud suivant depuis le noeud
