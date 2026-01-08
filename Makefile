@@ -69,7 +69,7 @@ runtest_coord: test_coord
 	@echo "================= [   Test de coord   ] ================="
 	./test_coord
 
-runtest_liste_noeud: test_grille
+runtest_grille: test_grille
 	@echo "================= [  Test de grille   ] ================="
 	./test_grille
 
