@@ -3,16 +3,6 @@
 #include <stdbool.h>
 #include "coord.h"
 
-struct _cellule {
-    coord_t noeud;
-    float cout;
-    coord_t precedent;
-    struct _cellule* suivant;
-};
-
-struct liste_noeud_t {
-    struct _cellule* tete;
-};
 
 typedef struct liste_noeud_t liste_noeud_t;
 

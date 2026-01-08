@@ -94,10 +94,10 @@ dijkstra_debug: main.do $(OBJECTS_D)
 	$(LD) $^ -o $@ $(LDFLAGS_D)
 
 test_coord: test_coord.o coord.o
-	$(LD) $^ -o $@ $(TESTLDFLAGS)
+	$(LD) $^ -o $@ $(LDFLAGS_T)
 
 test_grille: test_grille.o grille.o coord.o
-	$(LD) $^ -o $@ $(TESTLDFLAGS)
+	$(LD) $^ -o $@ $(LDFLAGS_T)
 
 test_liste_noeud: test_liste_noeud.o coord.o grille.o liste_noeud.o
 	$(LD) $^ -o $@ $(LDFLAGS_T)

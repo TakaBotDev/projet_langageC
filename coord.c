@@ -1,5 +1,4 @@
 #include "coord.h"
-#include <math.h>
 
 coord_t creer_coord(int x, int y) {
     coord_t resultat;
@@ -42,5 +41,5 @@ coord_t translation(coord_t position, int dx, int dy) {
 float distance_euclidienne(coord_t p1, coord_t p2) {
     int diffx = p2.x - p1.x;
     int diffy = p2.y - p1.y;
-    return sqrtf( (float)(diffx * diffx + diffy * diffy) );
+    return (float)((diffx * diffx + diffy * diffy)^(1/2));
 }

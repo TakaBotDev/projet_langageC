@@ -3,6 +3,17 @@
 #include <stdlib.h>
 #include <math.h>
 
+struct _cellule {
+    coord_t noeud;
+    float cout;
+    coord_t precedent;
+    struct _cellule* suivant;
+};
+
+struct liste_noeud_t {
+    struct _cellule* tete;
+};
+
 liste_noeud_t* creer_liste (void) {
     liste_noeud_t* liste = (liste_noeud_t*)malloc(sizeof(*liste));
     if (liste == NULL) {
