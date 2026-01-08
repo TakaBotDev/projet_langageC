@@ -127,7 +127,6 @@ static SDL_Color color_scale(SDL_Color from, SDL_Color to, double ratio) {
 }
 
 static const SDL_Color BLACK = { .r = 0, .g = 0, .b = 0, .a = 255 };
-static const SDL_Color WHITE = { .r = 255, .g = 255, .b = 255, .a = 255 };
 static const SDL_Color GREY = { .r = 180, .g = 180, .b = 180, .a = 150 };
 static const SDL_Color RED1 = { .r = 180, .g = 10 , .b = 10, .a = 255 };
 static const SDL_Color YELLOW1 = { .r = 255, .g = 255, .b = 197, .a = 255 };
